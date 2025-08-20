@@ -3,16 +3,847 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portafolio - Marketing & Community Manager</title>
+    <title>Juan Daniel Vera - Web Designer & Community Manager</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-     <link rel="stylesheet" href="css/estilos.css" />
-       <script src="js/index.js" defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            --code-gradient: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            --design-gradient: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--code-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: #4ECDC4;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--dark-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(0, 255, 127, 0.05) 0%, transparent 50%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            animation: slideUp 1s ease-out;
+            background: var(--code-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            animation: slideUp 1s ease-out 0.3s both;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideUp 1s ease-out 0.6s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            animation: slideUp 1s ease-out 0.9s both;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: white;
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+
+        .tech-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            animation: slideUp 1s ease-out 1.2s both;
+        }
+
+        .tech-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tech-icon:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title p {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+            text-align: center;
+            transform: rotate(-3deg);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .profile-card:hover {
+            transform: rotate(0deg);
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: var(--design-gradient);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            color: white;
+            position: relative;
+        }
+
+        .profile-img::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            border-radius: 50%;
+            background: var(--design-gradient);
+            z-index: -1;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .profile-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .profile-card p {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .about-text {
+            color: #444;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .skills-showcase {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .skill-badge {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 0.7rem 1.3rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Services Section */
+        .services {
+            background: #f8f9ff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-gradient);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 35px 70px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 20px;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(79, 172, 254, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-card li {
+            color: #555;
+            margin-bottom: 0.7rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4ECDC4;
+            font-weight: bold;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background: white;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 3rem;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 35px 70px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-image {
+            height: 280px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="code" width="20" height="20" patternUnits="userSpaceOnUse"><text x="10" y="15" font-family="monospace" font-size="8" fill="rgba(255,255,255,0.1)" text-anchor="middle">&lt;/&gt;</text></pattern></defs><rect width="100" height="100" fill="url(%23code)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .portfolio-content {
+            padding: 2.5rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .portfolio-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .portfolio-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .portfolio-link {
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .portfolio-link.primary {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .portfolio-link.secondary {
+            border: 2px solid #ddd;
+            color: #666;
+        }
+
+        .portfolio-link:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--dark-gradient);
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item i {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            font-size: 1.3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .social-link {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.6rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-link:hover {
+            background: var(--accent-gradient);
+            transform: translateY(-5px);
+            border-color: transparent;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 3rem;
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.7rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4ECDC4;
+            box-shadow: 0 0 0 3px rgba(78, 205, 196, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .tech-icons {
+                gap: 1rem;
+            }
+
+            .tech-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Additional animations */
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">Portfolio</div>
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                JDV
+            </div>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#sobre-mi">Sobre Mí</a></li>
@@ -26,17 +857,40 @@
     <!-- Hero Section -->
     <section id="inicio" class="hero">
         <div class="hero-content">
-            <h1>Marketing Digital & Community Management</h1>
-            <p class="subtitle">Transformo marcas en experiencias digitales memorables</p>
+            <div class="hero-badge">
+                <i class="fas fa-rocket"></i> Disponible para proyectos
+            </div>
+            <h1>Web Designer & Community Manager</h1>
+            <p class="subtitle">Juan Daniel Vera Quintero</p>
+            <p class="description">Creo experiencias digitales excepcionales que conectan marcas con audiencias, combinando diseño web innovador con estrategias de marketing digital efectivas.</p>
+            
             <div class="cta-buttons">
                 <a href="#portfolio" class="btn btn-primary">
-                    <i class="fas fa-rocket"></i>
-                    Ver Proyectos
+                    <i class="fas fa-eye"></i>
+                    Ver Portfolio
                 </a>
                 <a href="#contacto" class="btn btn-secondary">
-                    <i class="fas fa-envelope"></i>
-                    Contactar
+                    <i class="fas fa-coffee"></i>
+                    Hablemos
                 </a>
+            </div>
+
+            <div class="tech-icons">
+                <div class="tech-icon" title="React.js">
+                    <i class="fab fa-react"></i>
+                </div>
+                <div class="tech-icon" title="JavaScript">
+                    <i class="fab fa-js-square"></i>
+                </div>
+                <div class="tech-icon" title="Figma">
+                    <i class="fab fa-figma"></i>
+                </div>
+                <div class="tech-icon" title="Social Media">
+                    <i class="fas fa-share-alt"></i>
+                </div>
+                <div class="tech-icon" title="WordPress">
+                    <i class="fab fa-wordpress"></i>
+                </div>
             </div>
         </div>
     </section>
@@ -46,342 +900,302 @@
         <div class="container">
             <div class="section-title fade-in">
                 <h2>Sobre Mí</h2>
-                <p>Especialista en crear conexiones auténticas entre marcas y audiencias</p>
+                <p>Diseñador web apasionado y estratega digital con enfoque en resultados medibles</p>
             </div>
             
             <div class="about-content">
                 <div class="about-image fade-in">
                     <div class="profile-card">
                         <div class="profile-img">
-                            <i class="fas fa-user-tie"></i>
+                            <i class="fas fa-palette"></i>
                         </div>
-                        <h3>Juan Daniel Vera Quintero</h3>
-                        <p>Marketing Digital Expert</p>
+                        <h3>Juan Daniel Vera</h3>
+                        <p>Full Stack Designer</p>
                     </div>
                 </div>
                 
                 <div class="about-text fade-in">
-                    <h3>Creando impacto digital desde 2020</h3>
-                    <p>Como especialista en marketing digital y community management, me dedico a construir estrategias que no solo generen números, sino que creen comunidades leales y comprometidas. Mi enfoque combina creatividad, análisis de datos y tendencias actuales para maximizar el ROI de cada campaña.</p>
+                    <h3>Diseñando el futuro digital</h3>
+                    <p>Soy un diseñador web y community manager con más de 4 años de experiencia creando soluciones digitales integrales. Mi enfoque único combina diseño UX/UI excepcional con estrategias de marketing digital comprobadas.</p>
                     
-                    <p>He trabajado con más de 50 marcas, desde startups hasta empresas consolidadas, ayudándolas a encontrar su voz digital y conectar auténticamente con su audiencia objetivo.</p>
+                    <p>Desde sitios web responsivos hasta campañas virales en redes sociales, me especializo en crear experiencias que no solo se ven increíbles, sino que también generan resultados reales para las marcas.</p>
+
+                    <div class="skills-showcase">
+                        <span class="skill-badge">React & Next.js</span>
+                        <span class="skill-badge">Figma & Adobe Creative</span>
+                        <span class="skill-badge">Meta Business</span>
+                        <span class="skill-badge">Google Analytics</span>
+                        <span class="skill-badge">WordPress</span>
+                    </div>
                 </div>
             </div>
 
             <div class="stats fade-in">
                 <div class="stat-card">
-                    <div class="stat-number">150.000K+</div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Sitios Web Creados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">200K+</div>
                     <div class="stat-label">Seguidores Generados</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">20+</div>
-                    <div class="stat-label">Marcas Gestionadas</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">280%</div>
-                    <div class="stat-label">ROI Promedio</div>
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Satisfacción del Cliente</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="servicios" class="section services">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Servicios</h2>
-                <p>Soluciones integrales para tu presencia digital</p>
+  <!-- Services Section -->
+<section id="servicios" class="section services">
+    <div class="container">
+        <div class="section-title fade-in">
+            <h2>Servicios</h2>
+            <p>Soluciones digitales integrales para impulsar tu marca en el mundo online</p>
+        </div>
+
+        <div class="services-grid">
+            <!-- Service Card 1 -->
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>Diseño Web Moderno</h3>
+                <p>Creo sitios web atractivos, responsivos y optimizados para conversión, usando tecnologías modernas como React, Next.js y Figma.</p>
+                <ul>
+                    <li>Diseño UX/UI personalizado</li>
+                    <li>Desarrollo responsive (móvil + desktop)</li>
+                    <li>Integración con CMS</li>
+                </ul>
             </div>
 
-            <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-bullhorn"></i>
-                    </div>
-                    <h3>Estrategia de Marketing</h3>
-                    <p>Desarrollo de estrategias personalizadas basadas en análisis profundo de mercado, competencia y audiencia objetivo para maximizar tu presencia digital.</p>
-                    <ul>
-                        <li>• Análisis de mercado y competencia</li>
-                        <li>• Definición de buyer personas</li>
-                        <li>• Plan de contenidos estratégico</li>
-                        <li>• KPIs y métricas de éxito</li>
-                    </ul>
+            <!-- Service Card 2 -->
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <i class="fas fa-bullhorn"></i>
                 </div>
+                <h3>Community Management</h3>
+                <p>Gestiono tus redes sociales con contenido estratégico, campañas virales y análisis de audiencia para aumentar tu engagement.</p>
+                <ul>
+                    <li>Planificación de contenido mensual</li>
+                    <li>Community engagement 24/7</li>
+                    <li>Reportes de desempeño y KPIs</li>
+                </ul>
+            </div>
 
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Community Management</h3>
-                    <p>Gestión integral de redes sociales con enfoque en construcción de comunidades activas, engagement auténtico y crecimiento sostenible.</p>
-                    <ul>
-                        <li>• Gestión de redes sociales</li>
-                        <li>• Creación de contenido viral</li>
-                        <li>• Atención al cliente digital</li>
-                        <li>• Análisis de métricas</li>
-                    </ul>
+            <!-- Service Card 3 -->
+            <div class="service-card fade-in">
+                <div class="service-icon">
+                    <i class="fas fa-chart-line"></i>
                 </div>
-
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Publicidad Digital</h3>
-                    <p>Campañas publicitarias optimizadas en Meta Ads, Google Ads y LinkedIn Ads con enfoque en conversión y retorno de inversión medible.</p>
-                    <ul>
-                        <li>• Campañas en Meta Business</li>
-                        <li>• Google Ads y SEM</li>
-                        <li>• Remarketing estratégico</li>
-                        <li>• Optimización de conversiones</li>
-                    </ul>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3>Contenido Creativo</h3>
-                    <p>Producción de contenido visual y audiovisual que conecta emocionalmente con tu audiencia y refuerza la identidad de marca.</p>
-                    <ul>
-                        <li>• Diseño gráfico para RRSS</li>
-                        <li>• Videos y motion graphics</li>
-                        <li>• Fotografía de producto</li>
-                        <li>• Copywriting persuasivo</li>
-                    </ul>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>SEO & Analytics</h3>
-                    <p>Optimización para motores de búsqueda y análisis profundo de datos para tomar decisiones estratégicas basadas en resultados reales.</p>
-                    <ul>
-                        <li>• SEO on-page y off-page</li>
-                        <li>• Google Analytics 4</li>
-                        <li>• Informes personalizados</li>
-                        <li>• Optimización de conversiones</li>
-                    </ul>
-                </div>
-
-                <div class="service-card fade-in">
-                    <div class="service-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Consultoría & Training</h3>
-                    <p>Capacitación personalizada para equipos internos y consultoría estratégica para optimizar procesos de marketing digital.</p>
-                    <ul>
-                        <li>• Workshops de redes sociales</li>
-                        <li>• Auditorías digitales</li>
-                        <li>• Capacitación de equipos</li>
-                        <li>• Mentoría personalizada</li>
-                    </ul>
-                </div>
+                <h3>Marketing Digital</h3>
+                <p>Implemento estrategias efectivas en Google Ads, Meta Ads y SEO para aumentar tu tráfico y conversiones.</p>
+                <ul>
+                    <li>Google & Meta Ads</li>
+                    <li>Optimización SEO On-Page</li>
+                    <li>Automatización de campañas</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="section portfolio">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Portfolio</h2>
-                <p>Casos de éxito que hablan por sí solos</p>
+<!-- Portfolio Section -->
+<section id="portfolio" class="section portfolio">
+    <div class="container">
+        <div class="section-title fade-in">
+            <h2>Portfolio</h2>
+            <p>Proyectos destacados que muestran mi enfoque creativo y técnico</p>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- Project 1 -->
+            <div class="portfolio-item fade-in">
+                <div class="portfolio-image" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Sitio Corporativo - TechNova</h3>
+                    <p class="portfolio-description">Diseño y desarrollo de sitio web institucional con integración de blog y formulario de contacto.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Figma</span>
+                        <span class="tag">SEO</span>
+                    </div>
+                    <div class="portfolio-links">
+                        <a href="https://technova.example.com" target="_blank" class="portfolio-link primary">
+                            <i class="fas fa-external-link-alt"></i> Ver Sitio
+                        </a>
+                        <a href="#sobre-mi" class="portfolio-link secondary">
+                            <i class="fas fa-info-circle"></i> Más Info
+                        </a>
+                    </div>
+                </div>
             </div>
 
-            <div class="portfolio-grid">
-                <div class="portfolio-item fade-in">
-                    <div class="portfolio-image">
-                        <i class="fas fa-shopping-cart"></i>
+            <!-- Project 2 -->
+            <div class="portfolio-item fade-in">
+                <div class="portfolio-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                    <i class="fas fa-store"></i>
+                </div>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Tienda Online - Moda Urbana</h3>
+                    <p class="portfolio-description">E-commerce completo con integración de pasarelas de pago y gestión de inventario.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">WordPress</span>
+                        <span class="tag">WooCommerce</span>
+                        <span class="tag">Marketing</span>
                     </div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">E-commerce Fashion Brand</h3>
-                        <p>Estrategia integral que incrementó las ventas online en 340% en 6 meses. Implementación de funnel de conversión optimizado y campaña de influence marketing.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Meta Ads</span>
-                            <span class="tag">Influencer Marketing</span>
-                            <span class="tag">E-commerce</span>
-                        </div>
+                    <div class="portfolio-links">
+                        <a href="https://modaurbana.example.com" target="_blank" class="portfolio-link primary">
+                            <i class="fas fa-external-link-alt"></i> Ver Tienda
+                        </a>
+                        <a href="#sobre-mi" class="portfolio-link secondary">
+                            <i class="fas fa-info-circle"></i> Más Info
+                        </a>
                     </div>
                 </div>
+            </div>
 
-                <div class="portfolio-item fade-in">
-                    <div class="portfolio-image">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Cadena de Restaurantes</h3>
-                        <p>Desarrollo de estrategia omnicanal que aumentó el engagement 280% y generó 50K nuevos seguidores. Gestión de crisis y reputación online.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Community Management</span>
-                            <span class="tag">Content Strategy</span>
-                            <span class="tag">Crisis Management</span>
-                        </div>
-                    </div>
+            <!-- Project 3 -->
+            <div class="portfolio-item fade-in">
+                <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                    <i class="fas fa-hashtag"></i>
                 </div>
-
-                <div class="portfolio-item fade-in">
-                    <div class="portfolio-image">
-                        <i class="fas fa-laptop-code"></i>
+                <div class="portfolio-content">
+                    <h3 class="portfolio-title">Campaña en Redes - EcoLife</h3>
+                    <p class="portfolio-description">Campaña viral en Instagram y TikTok que aumentó en 300% el engagement en 3 meses.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Instagram</span>
+                        <span class="tag">TikTok</span>
+                        <span class="tag">Analytics</span>
                     </div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">SaaS Tech Startup</h3>
-                        <p>Construcción de comunidad desde cero hasta 25K usuarios activos. Estrategia de contenido educativo y webinars que generaron 200+ leads cualificados mensuales.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Lead Generation</span>
-                            <span class="tag">Content Marketing</span>
-                            <span class="tag">LinkedIn Ads</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item fade-in">
-                    <div class="portfolio-image">
-                        <i class="fas fa-dumbbell"></i>
-                    </div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Fitness & Wellness</h3>
-                        <p>Campaña de transformación personal que viralizó alcanzando 2M de impresiones. Colaboración con micro-influencers fitness y contenido user-generated.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Viral Marketing</span>
-                            <span class="tag">UGC Campaign</span>
-                            <span class="tag">Micro-Influencers</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item fade-in">
-                    <div class="portfolio-image">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Plataforma Educativa</h3>
-                        <p>Estrategia de marketing educativo que incrementó las inscripciones 180%. Funnel automatizado con email marketing y retargeting inteligente.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Email Marketing</span>
-                            <span class="tag">Marketing Automation</span>
-                            <span class="tag">Educational Content</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="portfolio-item fade-in">
-                    <div class="portfolio-image">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Real Estate Agency</h3>
-                        <p>Digitalización completa de inmobiliaria tradicional. Tours virtuales, contenido interactivo y lead nurturing que aumentó ventas 150% durante pandemia.</p>
-                        <div class="portfolio-tags">
-                            <span class="tag">Digital Transformation</span>
-                            <span class="tag">Virtual Tours</span>
-                            <span class="tag">Lead Nurturing</span>
-                        </div>
+                    <div class="portfolio-links">
+                        <a href="https://instagram.com/ecolife" target="_blank" class="portfolio-link primary">
+                            <i class="fas fa-external-link-alt"></i> Ver Campaña
+                        </a>
+                        <a href="#sobre-mi" class="portfolio-link secondary">
+                            <i class="fas fa-info-circle"></i> Más Info
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contacto" class="section contact">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2 style="color: white;">¿Listo para impulsar tu marca?</h2>
-                <p style="color: rgba(255,255,255,0.8);">Conversemos sobre cómo puedo ayudarte a alcanzar tus objetivos digitales</p>
+<!-- Contact Section -->
+<section id="contacto" class="section contact">
+    <div class="container">
+        <div class="section-title fade-in">
+            <h2>Contacto</h2>
+            <p>¿Listo para llevar tu marca al siguiente nivel? ¡Hablemos!</p>
+        </div>
+
+        <div class="contact-content">
+            <!-- Contact Info -->
+            <div class="contact-info fade-in">
+                <h3>¡Conectemos!</h3>
+                <p>Estoy disponible para proyectos freelance, colaboraciones o simplemente para tomar un café virtual y hablar de ideas.</p>
+
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email</strong><br>
+                        <a href="mailto:jvera02@itfip.edu.co" style="color: white; text-decoration: none;">jvera02@itfip.edu.co</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <strong>Teléfono</strong><br>
+                        +57 310 506 72 38
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Ubicación</strong><br>
+                        Zipaquira , Colombia
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/juandanielvera" target="_blank" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://instagram.com/juandanielvera" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://github.com/juandanielvera" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://twitter.com/juandanielvera" target="_blank" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
             </div>
 
-            <div class="contact-content">
-                <div class="contact-info fade-in">
-                    <h3>Conectemos</h3>
-                    <p style="margin-bottom: 2rem; opacity: 0.9;">Estoy disponible para nuevos proyectos y colaboraciones. ¡Hablemos de tu próximo éxito digital!</p>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <strong>Email</strong><br>
-                            veraquinterodaniel26@gmail.com
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <strong>Teléfono</strong><br>
-                            +57 3105067238
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Ubicación</strong><br>
-                            Chicoral, Tolima, Colombia
-                        </div>
+            <!-- Contact Form -->
+            <div class="contact-form fade-in">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
                     </div>
 
-                    <div class="social-links">
-                        <a href="#" class="social-link">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="social-link">
-                            <i class="fab fa-behance"></i>
-                        </a>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
                     </div>
-                </div>
-                
-                <div class="contact-form fade-in">
-                    <form>
-                        <div class="form-group">
-                            <label for="nombre">Nombre completo</label>
-                            <input type="text" id="nombre" name="nombre" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="empresa">Empresa</label>
-                            <input type="text" id="empresa" name="empresa">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="presupuesto">Presupuesto estimado</label>
-                            <select id="presupuesto" name="presupuesto">
-                                <option value="">Selecciona un rango</option>
-                                <option value="1000-5000">$1,000 - $5,000 USD</option>
-                                <option value="5000-10000">$5,000 - $10,000 USD</option>
-                                <option value="10000-25000">$10,000 - $25,000 USD</option>
-                                <option value="25000+">$25,000+ USD</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="mensaje">Cuéntame sobre tu proyecto</label>
-                            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Describe tu proyecto, objetivos y cómo puedo ayudarte..." required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            <i class="fas fa-paper-plane"></i>
-                            Enviar Mensaje
-                        </button>
-                    </form>
-                </div>
+
+                    <div class="form-group">
+                        <label for="subject">Asunto</label>
+                        <select id="subject" name="subject" required>
+                            <option value="" disabled selected>Selecciona un tema</option>
+                            <option value="proyecto">Proyecto Freelance</option>
+                            <option value="colaboracion">Colaboración</option>
+                            <option value="pregunta">Tengo una pregunta</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Cuéntame sobre tu idea..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar Mensaje
+                    </button>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- JavaScript -->
-    <script>
-       
-    </script>
+<!-- Footer -->
+<footer style="background: var(--dark-gradient); color: rgba(255,255,255,0.7); text-align: center; padding: 2rem 0; font-size: 1rem;">
+    &copy; 2025 Juan Daniel Vera. Todos los derechos reservados. Diseñado y desarrollado con <i class="fas fa-heart" style="color: #f5576c;"></i> en Medellín.
+</footer>
+
+<!-- Scroll Animation Script -->
+<script>
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
